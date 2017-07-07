@@ -11,4 +11,9 @@ public class PlayerScript : MonoBehaviour
 	{
 		transform.Translate(new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0.0f) * -speed * Time.deltaTime);
 	}
+
+	void OnTriggerEnter2D(Collider2D other)
+	{
+		Destroy(gameObject);
+	}
 }

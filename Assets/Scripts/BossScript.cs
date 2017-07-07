@@ -36,6 +36,7 @@ public class BossScript : MonoBehaviour
 	void Start ()
 	{
 		curState = State.PATROL;
+		prevState = State.MELEE_ATK;
 		shootAmount = 0;
 	}
 	
@@ -90,7 +91,7 @@ public class BossScript : MonoBehaviour
 				{
 					case 0:
 						transform.Translate(Vector3.down * meleeDashSpeed * Time.deltaTime);
-						if(transform.position.y < -3.5f) actionStep++;
+						if(transform.position.y < -3.5f && transform.position.y < target.transform.position.y - 1.5f) actionStep++;
 						break;
 					case 1:
 						transform.Translate(Vector3.up * meleeDashSpeed * 0.5f * Time.deltaTime);
