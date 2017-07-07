@@ -37,6 +37,7 @@ public class EnemyBaseScript : MonoBehaviour
 		{
 			GameManagerScript.Instance.score += 100;
 			SoundManagerScript.Instance.PlaySFX(AudioClipID.SFX_ATTACK);
+			SpawnManagerScript.Instance.enemyList.Remove(this);
 			gameObject.SetActive(false);
 			isToBeDestroyed = false;
 			//Destroy(gameObject);
