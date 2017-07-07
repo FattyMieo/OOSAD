@@ -36,7 +36,10 @@ public class EnemyBaseScript : MonoBehaviour
 		if(isToBeDestroyed)
 		{
 			GameManagerScript.Instance.score += 100;
-			Destroy(gameObject);
+			SoundManagerScript.Instance.PlaySFX(AudioClipID.SFX_ATTACK);
+			gameObject.SetActive(false);
+			isToBeDestroyed = false;
+			//Destroy(gameObject);
 		}
 	}
 }

@@ -11,16 +11,16 @@ public class GameManagerScript : MonoBehaviour
 	{
 		get
 		{
-			GameObject tempObject = GameObject.FindWithTag("GameManager");
+			// Singleton implementation for objects that can be dynamically created (doesnt have reference to hierarchy objects)
+			if(mInstance == null)
+			{
+				GameObject tempObject = GameObject.FindWithTag("GameManager");
 
-			if(tempObject == null)
-			{
-				GameObject go = new GameObject("GameManager");
-				mInstance = go.AddComponent<GameManagerScript>();
-				go.tag = "GameManager";
-			}
-			else
-			{
+				if(tempObject == null)
+				{
+					tempObject = Instantiate(PrefabManagerScript.Instance.gameManagerPrefab, Vector3.zero, Quaternion.identity);
+				}
+
 				mInstance = tempObject.GetComponent<GameManagerScript>();
 			}
 			return mInstance;
@@ -33,7 +33,11 @@ public class GameManagerScript : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
-		
+		SoundManagerScript.Instance.PlayBGM(AudioClipID.BGM_GAMEPLAY);
+
+		ObjectPoolManagerScript.Instance.CreatePool(SpawnManagerScript.Instance.enemyPrefabList[0], 20, 20);
+		ObjectPoolManagerScript.Instance.CreatePool(SpawnManagerScript.Instance.enemyPrefabList[1], 20, 20);
+		ObjectPoolManagerScript.Instance.CreatePool(SpawnManagerScript.Instance.enemyPrefabList[2], 20, 20);
 	}
 	
 	// Update is called once per frame

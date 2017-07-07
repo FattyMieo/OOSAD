@@ -1,10 +1,13 @@
 fileFormatVersion: 2
 guid: a6cc9bd47d304ee4dadab4a22bc068c3
-timeCreated: 1497424347
+timeCreated: 1498025610
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - scoreText: {instanceID: 0}
+  - gameManagerPrefab: {fileID: 1775744268734608, guid: d408a5555b57e8d4a9f6dca37a71cb07,
+      type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
