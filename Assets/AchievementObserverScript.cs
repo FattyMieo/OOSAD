@@ -20,12 +20,6 @@ public class AchievementObserverScript : MonoBehaviour
 		achievementTitleText.text = achievementName;
 		achievementBar.fillAmount = achievementCount/achievementMaxCount;
 	}
-	
-	// Update is called once per frame
-	void Update () 
-	{
-		
-	}
 
 	public void Notify(AchievementType type)
 	{
@@ -36,6 +30,8 @@ public class AchievementObserverScript : MonoBehaviour
 			achievementBar.fillAmount = (float)achievementCount/(float)achievementMaxCount;
 			if(achievementCount >= achievementMaxCount)
 			{
+				achievementCount = achievementMaxCount;
+				achievementTitleText.text = "Achievement Completed!";
 				AchievementSubjectScript.Instance.UnSubscribeObserver(this);
 			}
 		}
