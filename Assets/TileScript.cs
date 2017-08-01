@@ -4,10 +4,11 @@ using UnityEngine;
 
 public enum TileType
 {
-	SAND,
+	NONE = -1,
+	SAND = 0,
 	BRICK,
 	WOOD,
-	NONE,
+	TOTAL
 }
 
 public class TileScript : MonoBehaviour 
@@ -18,14 +19,6 @@ public class TileScript : MonoBehaviour
 	// Use this for initialization
 	void Start () 
 	{
-
-		GetComponent<SpriteRenderer>().sprite=tileModelScript.tileSpriteList [(int)myType];
-		
-	}
-	
-	// Update is called once per frame
-	void Update () 
-	{
-		
+		GetComponent<SpriteRenderer>().sprite = tileModelScript.tileSpriteList [(int)myType];
 	}
 }
