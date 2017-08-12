@@ -22,6 +22,7 @@ public class EnemyManagerScript : MonoBehaviour
 	public Collider2D coll;
 	public Animator anim;
 	public GameObject player;
+	public SpriteRenderer bodySprite;
 	private bool isFirstInitialize = true;
 
 	[Header("Debug Panel")]

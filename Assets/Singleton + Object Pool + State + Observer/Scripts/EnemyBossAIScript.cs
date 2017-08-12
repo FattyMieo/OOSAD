@@ -77,6 +77,7 @@ public class EnemyBossAIScript : MonoBehaviour
 						newBullet.transform.rotation = transform.rotation;
 						newBullet.fireSpeed = fireSpeed;
 						newBullet.ownerTag = tag;
+						newBullet.ChangeColor(self.bodySprite.color);
 					}
 
 					cooldownTimer = shootDuration;
@@ -91,7 +92,13 @@ public class EnemyBossAIScript : MonoBehaviour
 				}
 				break;
 			case State.SPAWN_ENEMIES:
-				
+				if(SpawnManagerScript.Instance.enemyList.Count > 10)
+				{
+					ChangeState(State.PATROL);
+					cooldownTimer = 0.0f;
+					shootAmount = 0;
+				}
+
 				if(cooldownTimer > 0.0f)
 				{
 					cooldownTimer -= Time.deltaTime;
@@ -122,10 +129,14 @@ public class EnemyBossAIScript : MonoBehaviour
 			case State.PATROL:
 			default:
 				Move();
+				State newState;
+				do
+				{
+					newState = (State)Random.Range((int)State.RANGED_ATK, (int)State.MELEE_ATK + 1);
+				}
+				while(newState == prevState);
 
-				if(prevState != State.MELEE_ATK) ChangeState(State.MELEE_ATK);
-				else ChangeState((State)Random.Range((int)State.RANGED_ATK, (int)State.SPAWN_ENEMIES + 1));
-
+				ChangeState(newState);
 				break;
 		}
 	}
@@ -135,6 +146,8 @@ public class EnemyBossAIScript : MonoBehaviour
 		prevState = curState;
 		curState = state;
 		actionStep = 0;
+
+		angle = (Mathf.Atan2(transform.position.y, transform.position.x) - Mathf.Atan2(1, 0)) * Mathf.Rad2Deg + 90.0f;
 	}
 
 	void Move()

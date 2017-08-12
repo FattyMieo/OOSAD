@@ -92,15 +92,11 @@ public class AchievementManagerScript : MonoBehaviour
 	public void SubscribeObserver(AchievementObserverScript observerScript)
 	{
 		observerList.Add(observerScript);
-		// ! For scroll view
-		observerScript.gameObject.SetActive(true);
 	}
 
 	public void UnSubscribeObserver(AchievementObserverScript observerScript)
 	{
 		observerList.Remove(observerScript);
-		// ! For scroll view
-		observerScript.gameObject.SetActive(false);
 	}
 
 	public void Notify(AchievementType type, int newValue)

@@ -39,10 +39,11 @@ public class GameManagerScript : MonoBehaviour
 	{
 		SoundManagerScript.Instance.PlayBGM(AudioClipID.BGM_GAMEPLAY);
 
-		ObjectPoolManagerScript.Instance.CreatePool(SpawnManagerScript.Instance.enemyPrefabList[0], 100, 100);
-		ObjectPoolManagerScript.Instance.CreatePool(SpawnManagerScript.Instance.enemyPrefabList[1], 20, 20);
-		ObjectPoolManagerScript.Instance.CreatePool(SpawnManagerScript.Instance.enemyPrefabList[2], 20, 20);
-		ObjectPoolManagerScript.Instance.CreatePool(SpawnManagerScript.Instance.bulletPrefab, 200, 200);
+		ObjectPoolManagerScript.Instance.CreatePool(SpawnManagerScript.Instance.enemyPrefabList[0], 200, 200);
+		ObjectPoolManagerScript.Instance.CreatePool(SpawnManagerScript.Instance.enemyPrefabList[1], 50, 50);
+		ObjectPoolManagerScript.Instance.CreatePool(SpawnManagerScript.Instance.enemyPrefabList[2], 50, 50);
+		ObjectPoolManagerScript.Instance.CreatePool(SpawnManagerScript.Instance.bulletPrefab, 500, 500);
+		ObjectPoolManagerScript.Instance.CreatePool(SpawnManagerScript.Instance.medkitPrefab, 10, 10);
 	}
 	
 	// Update is called once per frame

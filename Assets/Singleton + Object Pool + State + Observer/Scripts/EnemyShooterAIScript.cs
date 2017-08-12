@@ -74,6 +74,7 @@ public class EnemyShooterAIScript : MonoBehaviour {
 			newBullet.transform.rotation = transform.rotation;
 			newBullet.fireSpeed = fireSpeed;
 			newBullet.ownerTag = tag;
+			newBullet.ChangeColor(self.bodySprite.color);
 
 			isCooldown = true;
 		}

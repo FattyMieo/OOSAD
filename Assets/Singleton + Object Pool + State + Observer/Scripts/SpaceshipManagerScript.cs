@@ -8,6 +8,7 @@ public class SpaceshipManagerScript : MonoBehaviour
 	public Rigidbody2D rb;
 	public Collider2D coll;
 	public Animator anim;
+	public SpriteRenderer bodySprite;
 
 	[Header("Debug Panel")]
 	public bool isCooldown;
@@ -73,6 +74,7 @@ public class SpaceshipManagerScript : MonoBehaviour
 			newBullet.transform.rotation = transform.rotation;
 			newBullet.fireSpeed = fireSpeed;
 			newBullet.ownerTag = tag;
+			newBullet.ChangeColor(bodySprite.color);
 		}
 
 		anim.SetBool("IsInv", isInv);
@@ -86,8 +88,6 @@ public class SpaceshipManagerScript : MonoBehaviour
 				invTimer = 0.0f;
 			}
 		}
-
-		healthHUD.Notify(currentHealth);
 	}
 
 	public void Damage()
@@ -95,15 +95,24 @@ public class SpaceshipManagerScript : MonoBehaviour
 		if(!isInv)
 		{
 			currentHealth--;
+			healthHUD.Notify(currentHealth);
 
 			if(currentHealth <= 0)
 			{
 				SoundManagerScript.Instance.PlaySFX(AudioClipID.SFX_EXPLOSION);
-				Destroy(gameObject);
+				gameObject.SetActive(false);
 				return;
 			}
 
 			isInv = true;
 		}
+	}
+
+	public void Heal()
+	{
+		currentHealth += 3;
+		if(currentHealth > maxHealth)
+			currentHealth = maxHealth;
+		healthHUD.Notify(currentHealth);
 	}
 }
